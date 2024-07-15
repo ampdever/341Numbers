@@ -1,13 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Contacts API",
-    "description": "Constacts API",
+    "title": "Numbers API",
+    "description": "Numbers API",
     "version": "1.0.0"
   },
-  "host": "cse341project1-xl3h.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
@@ -160,30 +161,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -196,37 +173,170 @@
         }
       }
     },
-    "/users/": {
+    "/numbers": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": [
+          "Numbers"
         ],
+        "summary": "Get all numbers",
+        "description": "Retrieve a list of all numbers",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "A list of numbers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Number"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Numbers"
+        ],
+        "summary": "Create a new number",
+        "description": "Add a new number to the list",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Number"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Number created"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }
     },
-    "/users/{id}": {
+    "/numbers/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": [
+          "Numbers"
         ],
+        "summary": "Get a single number",
+        "description": "Retrieve a single number by its ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the number to retrieve"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "A single number",
+            "schema": {
+              "$ref": "#/definitions/Number"
+            }
+          },
+          "404": {
+            "description": "Number not found"
           }
+        }
+      },
+      "put": {
+        "tags": [
+          "Numbers"
+        ],
+        "summary": "Update a number",
+        "description": "Update an existing number by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the number to update"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Number updated"
+          },
+          "404": {
+            "description": "Number not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Numbers"
+        ],
+        "summary": "Delete a number",
+        "description": "Delete an existing number by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the number to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Number deleted"
+          },
+          "404": {
+            "description": "Number not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Number": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "one": {
+          "type": "string"
+        },
+        "two": {
+          "type": "string"
+        },
+        "three": {
+          "type": "string"
+        },
+        "four": {
+          "type": "string"
+        },
+        "five": {
+          "type": "string"
+        },
+        "six": {
+          "type": "string"
+        },
+        "seven": {
+          "type": "string"
         }
       }
     }
