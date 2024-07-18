@@ -8,7 +8,6 @@
   "host": "three41numbers.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
