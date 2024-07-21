@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -23,7 +23,7 @@ app
         secret: "secret",
         resave: false,
         saveUninitialized: true,
-        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+        store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL })
     }))
     .use(passport.initialize())
     .use(passport.session())
