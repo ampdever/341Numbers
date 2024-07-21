@@ -5,7 +5,7 @@ const doc = {
         title: 'Contacts API',
         description: 'Constacts API'
     },
-    host: 'localhost:3000',
+    host: 'three41numbers.onrender.com',
     schemes: ['https', 'http']
 };
 
